@@ -1,0 +1,1 @@
+web: gunicorn cpa_django.wsgi --log-file -
