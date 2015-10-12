@@ -5,7 +5,7 @@ from django.db import models
 
 
 class AdNetwork(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, unique=True)
 
     class Meta:
         verbose_name = 'Источник трафика'
@@ -22,7 +22,7 @@ class AdNetwork(models.Model):
 
 
 class Country(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, unique=True)
 
     class Meta:
         verbose_name = 'Гео'
@@ -39,7 +39,7 @@ class Country(models.Model):
 
 
 class Offer(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, unique=True)
 
     class Meta:
         verbose_name = 'Оффер'
@@ -56,7 +56,7 @@ class Offer(models.Model):
 
 
 class AffiliateNetwork(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, unique=True)
 
     class Meta:
         verbose_name = 'Сеть'
@@ -75,7 +75,8 @@ class AffiliateNetwork(models.Model):
 class CustomUser(User):
     """User with app settings."""
     skype_name = models.CharField(max_length=50, null=True, blank=True)
-    forum_name = models.CharField(max_length=50, null=True, blank=True)
+    forum_name = models.CharField(max_length=50, null=True,
+                                  blank=True, unique=True)
     objects = UserManager()
 
     class Meta:
