@@ -14,6 +14,7 @@ class PostOpts(admin.ModelAdmin):
     )
     list_display = (
         'user',
+        'created_at',
         'details',
         'all_countries',
         'all_offers',

@@ -81,6 +81,7 @@ class CustomUser(User):
 
 
 class Post(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
     details = models.TextField(max_length=500)
     url = models.URLField(max_length=500)
     ad_networks = models.ManyToManyField(AdNetwork)
