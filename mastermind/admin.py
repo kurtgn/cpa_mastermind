@@ -13,13 +13,13 @@ class PostOpts(admin.ModelAdmin):
         'user__forum_name',
     )
     list_display = (
-        'details',
-        'show_post_url',
         'user',
+        'details',
         'all_countries',
         'all_offers',
         'aff_networks',
         'all_ad_networks',
+        'show_post_url',
     )
 
     def show_post_url(self, obj):
