@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import AdNetwork, Post, Advert, Country, AffiliateNetwork, Offer, CustomUser
+from .models import AdNetwork, Post, Country, AffiliateNetwork, Offer, CustomUser
 
 
 class PostOpts(admin.ModelAdmin):
@@ -40,6 +40,12 @@ class PostOpts(admin.ModelAdmin):
 
     filter_horizontal = ('countries', 'affiliate_networks', 'offers', 'ad_networks')
     show_post_url.allow_tags = True
+    all_countries.short_description = 'Гео'
+    show_post_url.short_description = 'Ссылка'
+    all_offers.short_description = 'Офферы'
+    aff_networks.short_description = 'Источники'
+    all_ad_networks.short_description = 'Офф.сети'
+    # created_at.short_description = 'Создано'
 
 # class CustomUserOpts(admin.ModelAdmin):
 

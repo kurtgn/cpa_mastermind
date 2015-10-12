@@ -7,6 +7,10 @@ from django.db import models
 class AdNetwork(models.Model):
     name = models.CharField(max_length=30)
 
+    class Meta:
+        verbose_name = 'Источник трафика'
+        verbose_name_plural = 'Источники трафика'
+
     def __str__(self):
         return self.__unicode__()
 
@@ -19,6 +23,10 @@ class AdNetwork(models.Model):
 
 class Country(models.Model):
     name = models.CharField(max_length=30)
+
+    class Meta:
+        verbose_name = 'Гео'
+        verbose_name_plural = 'Гео'
 
     def __str__(self):
         return self.__unicode__()
@@ -33,6 +41,10 @@ class Country(models.Model):
 class Offer(models.Model):
     name = models.CharField(max_length=30)
 
+    class Meta:
+        verbose_name = 'Оффер'
+        verbose_name_plural = 'Офферы'
+
     def __str__(self):
         return self.__unicode__()
 
@@ -46,6 +58,10 @@ class Offer(models.Model):
 class AffiliateNetwork(models.Model):
     name = models.CharField(max_length=30)
 
+    class Meta:
+        verbose_name = 'Сеть'
+        verbose_name_plural = 'Офферные сети'
+
     def __str__(self):
         return self.__unicode__()
 
@@ -56,36 +72,27 @@ class AffiliateNetwork(models.Model):
         return '{}'.format(self.name)
 
 
-class Advert(models.Model):
-    forum_name = models.CharField(max_length=30)
-    skype_name = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.__unicode__()
-
-    def __repr__(self):
-        return self.__unicode__()
-
-    def __unicode__(self):
-        return '{}'.format(self.forum_name)
-
-
 class CustomUser(User):
     """User with app settings."""
     skype_name = models.CharField(max_length=50)
     forum_name = models.CharField(max_length=50)
     objects = UserManager()
+
     class Meta:
-        verbose_name = 'Advert'
-        verbose_name_plural = 'Adverts'
+        verbose_name = 'Адверт'
+        verbose_name_plural = 'Адверты'
 
 
 class Post(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    details = models.TextField(max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата")
+    details = models.TextField(max_length=500, verbose_name="Комментарий")
     url = models.URLField(max_length=500)
     ad_networks = models.ManyToManyField(AdNetwork)
-    user = models.ForeignKey(CustomUser)
+    user = models.ForeignKey(CustomUser, verbose_name="Адверт")
     offers = models.ManyToManyField(Offer)
     affiliate_networks = models.ManyToManyField(AffiliateNetwork)
     countries = models.ManyToManyField(Country)
+
+    class Meta:
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Посты'
