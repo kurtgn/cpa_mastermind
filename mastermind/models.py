@@ -86,7 +86,7 @@ class CustomUser(User):
 class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата")
     details = models.TextField(max_length=500, verbose_name="Комментарий")
-    url = models.URLField(max_length=500)
+    url = models.URLField(max_length=500, unique=True)
     ad_networks = models.ManyToManyField(AdNetwork)
     user = models.ForeignKey(CustomUser, verbose_name="Адверт")
     offers = models.ManyToManyField(Offer)
