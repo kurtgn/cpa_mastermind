@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import AdNetwork, Post, Advert, Country, AffiliateNetwork, Offer
+from .models import AdNetwork, Post, Advert, Country, AffiliateNetwork, Offer, CustomUser
 
 
 class PostOpts(admin.ModelAdmin):
@@ -10,7 +10,7 @@ class PostOpts(admin.ModelAdmin):
         'countries__name',
         'affiliate_networks__name',
         'offers__name',
-        'advert__forum_name',
+        'user__forum_name',
     )
     list_display = ('details', 'show_post_url')
 
@@ -18,10 +18,13 @@ class PostOpts(admin.ModelAdmin):
         return '<a href="%s" target="_blank">%s</a>' % (obj.url, obj.url)
     show_post_url.allow_tags = True
 
+# class CustomUserOpts(admin.ModelAdmin):
+
 
 admin.site.register(AdNetwork)
+admin.site.register(CustomUser)
 admin.site.register(AffiliateNetwork)
 admin.site.register(Offer)
-admin.site.register(Advert)
+# admin.site.register(Advert)
 admin.site.register(Post, PostOpts)
 admin.site.register(Country)
