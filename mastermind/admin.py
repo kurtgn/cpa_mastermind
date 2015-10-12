@@ -12,10 +12,32 @@ class PostOpts(admin.ModelAdmin):
         'offers__name',
         'user__forum_name',
     )
-    list_display = ('details', 'show_post_url')
+    list_display = (
+        'details',
+        'show_post_url',
+        'user',
+        'all_countries',
+        'all_offers',
+        'aff_networks',
+        'all_ad_networks',
+    )
 
     def show_post_url(self, obj):
         return '<a href="%s" target="_blank">%s</a>' % (obj.url, obj.url)
+
+    def all_countries(self, obj):
+        return ', '.join(map(lambda c: c.name, obj.countries.all()))
+
+    def all_offers(self, obj):
+        return ', '.join(map(lambda c: c.name, obj.offers.all()))
+
+    def aff_networks(self, obj):
+        return ', '.join(map(lambda c: c.name, obj.affiliate_networks.all()))
+
+    def all_ad_networks(self, obj):
+        return ', '.join(map(lambda c: c.name, obj.ad_networks.all()))
+
+    filter_horizontal = ('countries', 'affiliate_networks', 'offers', 'ad_networks')
     show_post_url.allow_tags = True
 
 # class CustomUserOpts(admin.ModelAdmin):
