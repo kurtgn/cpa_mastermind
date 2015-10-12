@@ -74,8 +74,8 @@ class AffiliateNetwork(models.Model):
 
 class CustomUser(User):
     """User with app settings."""
-    skype_name = models.CharField(max_length=50)
-    forum_name = models.CharField(max_length=50)
+    skype_name = models.CharField(max_length=50, null=True, blank=True)
+    forum_name = models.CharField(max_length=50, null=True, blank=True)
     objects = UserManager()
 
     class Meta:

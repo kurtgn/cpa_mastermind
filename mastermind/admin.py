@@ -10,7 +10,7 @@ class PostOpts(admin.ModelAdmin):
         'countries__name',
         'affiliate_networks__name',
         'offers__name',
-        'user__forum_name',
+        'user__username',
     )
     list_display = (
         'user',
